@@ -26,6 +26,24 @@ class BaseRenderer:
             pass
 
     @staticmethod
+    def intersect_series(row_int: int, col_int: int, N: int) -> pd.DataFrame:
+        BaseRenderer.assert_int_size(row_int, N)
+        BaseRenderer.assert_int_size(col_int, N)
+        df = BaseRenderer.get_empty_df(N)
+
+        rowS = BaseRenderer.value_to_series(row_int, N)
+        colS = BaseRenderer.value_to_series(col_int, N)
+        rowS.name = 'rows'
+        colS.name = 'cols'
+        
+        comb = pd.merge(rowS, colS, how='cross').all(axis=1)
+        active_rows = comb.index[comb] // N
+        active_cols = comb.index[comb] % N
+        
+
+        return
+
+    @staticmethod
     def get_2powerN(N: int) -> pd.Series:
         return pd.Series([2**i for i in range(N)])
 
