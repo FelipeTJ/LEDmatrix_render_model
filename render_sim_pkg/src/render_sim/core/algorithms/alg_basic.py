@@ -1,11 +1,6 @@
-import sys
-import os
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from render_sim.core.frame_gen import pd
+from render_sim.core.frame_gen import pd, FrameStep
 from render_sim.core.utils import get_2powerN, get_series_value
-from render_sim.core.algorithms.base_algorithm import FrameStep, BaseRenderer
+from render_sim.core.algorithms.base_algorithm import BaseRenderer
 
 
 class AlgBasic(BaseRenderer):

@@ -1,7 +1,7 @@
-from render_sim.core.frame_gen import pd, get_empty_df
+from render_sim.core.frame_gen import pd, FrameStep, get_empty_df
 
 
-def intersect_series(row_int: int, col_int: int, N: int) -> pd.DataFrame:
+def intersect_series(row_int: int, col_int: int, N: int) -> FrameStep:
     assert_int_size(row_int, N)
     assert_int_size(col_int, N)
     df = get_empty_df(N)
