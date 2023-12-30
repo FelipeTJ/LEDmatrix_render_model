@@ -2,8 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from algorithms.alg_basic import AlgBasic
-from algorithms.base_algorithm import get_random_frame
+from render_sim import *
 
 
 N = 4

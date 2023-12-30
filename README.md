@@ -6,6 +6,6 @@ skills.
 # Setup
 
 ```bash
-python3 -m venv venv_renderer
-. ./venv_renderer/bin/activate
+python3 -m venv .venv
+. ./.venv/bin/activate
 ```

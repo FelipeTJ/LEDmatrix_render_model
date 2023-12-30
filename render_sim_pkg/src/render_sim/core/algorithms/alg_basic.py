@@ -3,7 +3,9 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from base_algorithm import FrameStep, BaseRenderer, pd
+from render_sim.core.frame_gen import pd
+from render_sim.core.utils import get_2powerN, get_series_value
+from render_sim.core.algorithms.base_algorithm import FrameStep, BaseRenderer
 
 
 class AlgBasic(BaseRenderer):
@@ -13,8 +15,8 @@ class AlgBasic(BaseRenderer):
             led_matrix.index.size == self.N
         ), f"Incompatible N! {led_matrix.index.size} != {self.N}"
 
-        for ix, pow2 in enumerate(self.get_2powerN(self.N)):
-            col_val = self.get_series_value(led_matrix.loc[ix, :])
+        for ix, pow2 in enumerate(get_2powerN(self.N)):
+            col_val = get_series_value(led_matrix.loc[ix, :])
             
             if col_val != 0:
                 self.add_frame_step(pow2, col_val)

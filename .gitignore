@@ -1,3 +1,5 @@
-venv_renderer
+.venv
 
+*.egg-info
 *.pyc
+__pycache__

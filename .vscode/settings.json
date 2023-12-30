@@ -1,4 +1,7 @@
 {
     "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.defaultInterpreterPath": "${workspaceFolder}/venv_renderer/bin/python"
+    "python.defaultInterpreterPath": "${workspaceFolder}/venv_renderer/bin/python",
+    "python.analysis.extraPaths": [
+        "./render_sim_pkg/src"
+    ]
 }
