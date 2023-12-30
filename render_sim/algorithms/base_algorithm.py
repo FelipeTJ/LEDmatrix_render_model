@@ -18,12 +18,16 @@ class BaseRenderer:
         self.assert_int_size(col_int, self.N)
         self.steps.append((row_int, col_int))
 
-    def show_steps(self):
+    def show_steps(self) -> pd.DataFrame:
         assert self.steps != []
 
+        base = BaseRenderer.get_empty_df(self.N)
+
         for r, c in self.steps:
-            step = self.intersect_series(r, c, self.N)
-            pass
+            base |= self.intersect_series(r, c, self.N)
+        
+        print(base.replace(True, "o").replace(False, "."))
+        return base
 
     @staticmethod
     def intersect_series(row_int: int, col_int: int, N: int) -> pd.DataFrame:
@@ -39,9 +43,9 @@ class BaseRenderer:
         comb = pd.merge(rowS, colS, how='cross').all(axis=1)
         active_rows = comb.index[comb] // N
         active_cols = comb.index[comb] % N
-        
+        df.loc[active_rows, active_cols] = True
 
-        return
+        return df
 
     @staticmethod
     def get_2powerN(N: int) -> pd.Series:
@@ -54,7 +58,7 @@ class BaseRenderer:
     @staticmethod
     def value_to_series(val: int, N: int) -> pd.Series:
         BaseRenderer.assert_int_size(val, N)
-        return pd.Series(list(f"{val:0{N}b}"), dtype=int).astype(bool)
+        return pd.Series(reversed(list(f"{val:0{N}b}")), dtype=int).astype(bool)
 
     @staticmethod
     def get_empty_df(N: int) -> pd.DataFrame:
