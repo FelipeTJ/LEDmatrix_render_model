@@ -1,10 +1,10 @@
-from render_sim.core.frame_gen import pd, FrameStep
+from render_sim.core.frame_gen import LEDFrame, StepList
 from render_sim.core.utils import get_2powerN, get_series_value
-from render_sim.core.algorithms.base_algorithm import BaseRenderer
+from render_sim.algorithms.base_algorithm import BaseRenderer
 
 
 class AlgBasic(BaseRenderer):
-    def get_steps(self, led_matrix: pd.DataFrame) -> FrameStep:
+    def get_steps(self, led_matrix: LEDFrame) -> StepList:
         """Generate steps naively"""
         assert (
             led_matrix.index.size == self.N
